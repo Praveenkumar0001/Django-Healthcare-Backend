@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import EmailValidator, RegexValidator
-
-
 class Patient(models.Model):
     """
     Patient model to store patient information.
