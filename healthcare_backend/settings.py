@@ -73,6 +73,7 @@ WSGI_APPLICATION = 'healthcare_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# PostgreSQL Configuration (Active)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -83,6 +84,14 @@ DATABASES = {
         'PORT': config('DB_PORT', default='5432'),
     }
 }
+
+# SQLite Configuration (Backup - uncomment to use)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation

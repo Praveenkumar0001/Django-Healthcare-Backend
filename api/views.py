@@ -19,13 +19,20 @@ from .utils import success_response, error_response
 
 # ==================== Authentication Views ====================
 
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 @permission_classes([AllowAny])
 def register_user(request):
     """
     Register a new user.
     POST /api/auth/register/
     """
+    if request.method == 'GET':
+        return Response({
+            'message': 'User Registration Endpoint',
+            'method': 'POST',
+            'required_fields': ['username', 'email', 'first_name', 'last_name', 'password', 'password2']
+        })
+    
     serializer = UserRegistrationSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.save()
@@ -49,13 +56,20 @@ def register_user(request):
     )
 
 
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 @permission_classes([AllowAny])
 def login_user(request):
     """
     Login user and return JWT tokens.
     POST /api/auth/login/
     """
+    if request.method == 'GET':
+        return Response({
+            'message': 'User Login Endpoint',
+            'method': 'POST',
+            'required_fields': ['username', 'password']
+        })
+    
     username = request.data.get('username')
     password = request.data.get('password')
     
